@@ -3,7 +3,8 @@ const helperFunctions = require('../helpers/');
 const {SendMessageError} = require('../errors');
 
 const getBalanceInfo = async (req, res) => {
-    const { token, return_url } = req.body;
+    const { settings, return_url } = req.body;
+    const token = (settings.find(setting => setting.label === "Token")).default;    // get the token from the settings
     setToken(token);
     if (!token) return res.status(400).json({ "status": "error", "message": "The Linode API token was not provided" });
 
