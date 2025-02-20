@@ -48,7 +48,8 @@ const integration_specs = {
             " Formats and sends Linode spending details as messages to a specified Telex channel", 
             " Accepts user-defined settings, including API tokens and threshold values."
         ],
-        "tick_url": `${process.env.MY_DOMAIN}/account-info/get-balance-info`
+        "tick_url": `${process.env.MY_DOMAIN}/account-info/get-balance-info`, 
+        "target_url": `${process.env.MY_DOMAIN}/account-info/get-balance-info`
     }
 }
 
