@@ -23,7 +23,7 @@ describe("Test the balance endpoint", () => {
             ]
         }
 
-        const res = await request(application).post('/account-info/get-balance-info').send(data);
+        const res = await request(application).post('/tick').send(data);
         expect(res.body.status).toBe("success");
         expect(res.statusCode).toBe(200);
     });
@@ -42,13 +42,13 @@ describe("Test the balance endpoint", () => {
             ]
         };
 
-        const res = await request(application).post('/account-info/get-balance-info').send(data);
+        const res = await request(application).post('/tick').send(data);
         expect(res.statusCode).toBe(400);
     });
 
     test("Should return a status 502 if the wrong API key is used", async () => {
 
-        const res = await request(application).post('/account-info/get-balance-info').send({
+        const res = await request(application).post('/tick').send({
             "channel_id": " 01950f57-1237-7b8b-a5cf-056bc18ece20",
             "return_url": "https://ping.telex.im/v1/return/01950f57-1237-7b8b-a5cf-056bc18ece20",
             "settings": [

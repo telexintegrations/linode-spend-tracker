@@ -117,7 +117,7 @@ No request body is needed. 👍
 
 ---
 
-### `POST /account-info/get-balance-info`
+### `POST /tick`
 #### **Request Format**
 Telex sends a request in the following format:
 ```json

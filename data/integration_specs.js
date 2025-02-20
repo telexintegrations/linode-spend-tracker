@@ -25,9 +25,10 @@ const integration_specs = {
             }, 
             {
                 "label": "interval", 
-                "type": "text", 
+                "type": "dropdown", 
                 "required": true, 
                 "default": "* * * * *",
+                "options": ["* * * * *", "*/5 * * * *", "*/10 * * * *", "*/30 * * * *", "0 * * * *", "0 */5 * * *", "0 */12 * * *", "0 0 * * *"]
             },
             {
                 "label": "Spending Threshold", 
