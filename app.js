@@ -5,7 +5,9 @@ const application = express();
 // use middleware
 application.use(express.json());
 application.use(cors({
-    origin: "https://telex.im/"
+    origin: 'https://telex.im',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'] 
 }));
 
 // setup routes
