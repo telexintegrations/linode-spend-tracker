@@ -1,0 +1,29 @@
+name: Continous Integration
+
+env:
+  LINODE_TOKEN: ${{ secrets.LINODE_TOKEN }}
+  CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+
+on: 
+    pull_request:
+        branches: [main]
+
+jobs:
+    test:
+        runs-on: ubunutu-latest
+
+        steps:
+
+            - name: Checkout Code
+              uses: actions/checkout@v3
+
+            - name: Setup Node js
+              uses: actions/setup-node@v4
+              with: 
+                node-version: 22
+            
+            - name: Install dependencies
+              run: npm install
+            
+            - name: Run Tests
+              run: npm test
