@@ -1,0 +1,32 @@
+name: Deploy To VPS
+
+on:
+    push: 
+        branches: [main]
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v3
+            
+            - name: Setup SSH
+              uses: webfactory/ssh-agent@v0.5.3
+              with:
+                ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+                
+            - name: Deploy to server
+              run: |
+                ssh -o StrictHostKeyChecking=no ubuntu@20.115.88.88 << 'EOF'
+                echo "Connected to server"
+                cd /home/ubuntu/myproject/stage_3/linode-spend-tracker
+                eval "$(ssh-agent -s)"
+                ssh-add ~/.ssh/github_ssh
+                ssh-keyscan github.com >> /home/ubuntu/.ssh/known_hosts
+                git pull origin main
+                npm install
+                sudo systemctl restart nginx
+                sudo systemctl restart stage3_node_service
+                EOF
