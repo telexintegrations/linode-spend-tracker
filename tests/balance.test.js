@@ -28,7 +28,7 @@ describe("Test the balance endpoint", () => {
         expect(res.statusCode).toBe(200);
     });
 
-    test("Enpoint should return a 400 when the user does not pass a token to the request body", async() => {
+    test("Enpoint should return a 400 when the user does not pass a token to the request body", async () => {
         const data = {
             "channel_id": process.env.CHANNEL_ID,
             "return_url": `https://ping.telex.im/v1/return/${process.env.CHANNEL_ID}`,
@@ -46,15 +46,15 @@ describe("Test the balance endpoint", () => {
         expect(res.statusCode).toBe(400);
     });
 
-    test("Should return a status 502 if the wrong API key is used", async() => {
+    test("Should return a status 502 if the wrong API key is used", async () => {
 
         const res = await request(application).post('/account-info/get-balance-info').send({
-            "channel_id": process.env.CHANNEL_ID,
-            "return_url": `https://ping.telex.im/v1/return/${process.env.CHANNEL_ID}`,
+            "channel_id": " 01950f57-1237-7b8b-a5cf-056bc18ece20",
+            "return_url": "https://ping.telex.im/v1/return/01950f57-1237-7b8b-a5cf-056bc18ece20",
             "settings": [
                 {
                     "label": "Token",
-                    "default":"daniel",
+                    "default": "daniel",
                     "type": "text",
                     "required": true
                 },
