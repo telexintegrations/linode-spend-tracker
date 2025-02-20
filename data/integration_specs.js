@@ -17,7 +17,24 @@ const integration_specs = {
         "integration_type": "interval", 
         "is_active": true,
         "settings": [
-            
+            {
+                "label": "Token", 
+                "type": "text", 
+                "required": true, 
+                "default": ""
+            }, 
+            {
+                "label": "interval", 
+                "type": "text", 
+                "required": true, 
+                "default": "",
+            },
+            {
+                "label": "Spending Threshold", 
+                "type": "number", 
+                "required": false, 
+                "default": 0
+            }
         ], 
         "tick_url": `${process.env.MY_DOMAIN}/account-info/get-balance-info`
     }

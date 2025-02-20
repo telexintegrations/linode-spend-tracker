@@ -5,11 +5,16 @@ const {SendMessageError} = require('../errors');
 const getBalanceInfo = async (req, res) => {
     const { settings, return_url } = req.body;
     
+    // get the token if it exists
     const token = (settings?.find(setting => setting.label === "Token"))?.default;    // get the token from the settings
+    // get the threshold value if it exists
+    const threshold = (settings?.find(setting => setting.label === "Spending Threshold"))?.default;
+
     console.log(token);
     if (!token) return res.status(400).json({ "status": "error", "message": "The Linode API token was not provided" });
     if (!return_url) return res.status(400).json({"status": "error", "message": "The return_url was not provided"});
     
+    // set the token
     setToken(token);
 
 
@@ -17,7 +22,7 @@ const getBalanceInfo = async (req, res) => {
         const accountInfo = await getAccountInfo();
         // console.log(accountInfo);
         // create the message that you want to return 
-        const message = helperFunctions.generateMessage(accountInfo);
+        const message = helperFunctions.generateMessage(accountInfo, threshold);
 
         const responseMessage = {
             "status": "success",
