@@ -1,9 +1,5 @@
 name: Deploy To VPS
 
-env:
-  LINODE_TOKEN: ${{ secrets.LINODE_TOKEN }}
-  CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
-
 on:
     push: 
         branches: [main]
