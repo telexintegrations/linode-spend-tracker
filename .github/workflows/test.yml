@@ -1,5 +1,9 @@
 name: Continous Integration
 
+env:
+  LINODE_TOKEN: ${{ secrets.LINODE_TOKEN }}
+  CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+
 on: 
     pull_request:
         branches: [main]
