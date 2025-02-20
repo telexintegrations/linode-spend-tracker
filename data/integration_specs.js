@@ -36,6 +36,18 @@ const integration_specs = {
                 "default": 0
             }
         ], 
+        "key_features": [
+            "Retrieves real-time balance details from a Linode account.",
+            " Notifies users when their account balance exceeds a specified spending threshold.", 
+            " Formats and sends Linode spending details as messages to a specified Telex channel", 
+            " Accepts user-defined settings, including API tokens and threshold values."
+        ],
+        "permissions": [
+            "Retrieves real-time balance details from a Linode account.",
+            " Notifies users when their account balance exceeds a specified spending threshold.", 
+            " Formats and sends Linode spending details as messages to a specified Telex channel", 
+            " Accepts user-defined settings, including API tokens and threshold values."
+        ],
         "tick_url": `${process.env.MY_DOMAIN}/account-info/get-balance-info`
     }
 }
