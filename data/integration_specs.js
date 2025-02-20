@@ -27,7 +27,7 @@ const integration_specs = {
                 "label": "interval", 
                 "type": "text", 
                 "required": true, 
-                "default": "",
+                "default": "* * * * *",
             },
             {
                 "label": "Spending Threshold", 
