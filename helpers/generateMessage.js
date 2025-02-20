@@ -1,4 +1,4 @@
-const generateMessage = (accountObject) => {
+const generateMessage = (accountObject, threshold) => {
     const balance = accountObject.balance;  // get the balance
     const balance_uninvoiced = accountObject.balance_uninvoiced;    // get the uninvoiced balance
     const active_promotions = accountObject.active_promotions;  // get the list of active promotions
@@ -15,6 +15,13 @@ const generateMessage = (accountObject) => {
         
     }
 
+    let thresholdMessage;
+    if(threshold !== 0){
+        if(balance < threshold){
+            thresholdMessage = `WARNING: Your balance has gone below the set threshold of ${threshold} units \n`;
+        }
+    }
+
     // section will create the message about about the regular balance of the user
     let balanceMessage = `Your current account balance is ${balance}, with an uninvoiced amount of ${balance_uninvoiced}.`;
     if(balance_uninvoiced !== 0) {
@@ -22,7 +29,7 @@ const generateMessage = (accountObject) => {
     }
      
     // messages are joined here
-    const message = activePromotionsMessage + balanceMessage;
+    const message = [thresholdMessage, activePromotionsMessage, balanceMessage].filter(Boolean).join('');
     return message;
 }
 
