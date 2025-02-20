@@ -66,6 +66,6 @@ describe("Test the balance endpoint", () => {
                 }
             ]
         });
-        expect(res.statusCode).toBe(502);
+        expect(res.statusCode).toBe(401);
     });
 })

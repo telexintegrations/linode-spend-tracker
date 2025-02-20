@@ -42,7 +42,7 @@ const getBalanceInfo = async (req, res) => {
         else {
             console.log("Was not able to get the account info. Linode API key must be wrong");
             console.log(err);
-            return res.status(502).json({ "status": "error", "message": "Was not able to get account info. Linode API keys is wrong" })
+            return res.status(401).json({ "status": "error", "message": "Was not able to get account info. Linode API keys is wrong" })
         }   
     }
 
