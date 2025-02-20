@@ -8,7 +8,7 @@ const integration_specs = {
         }, 
         "descriptions": {
             "app_description": "This Application returns the balance and uninvoiced balance in the user's Linode Account inorder to track spending",
-            "app_logo": "https://media.tifi.tv/telexbucket/public/logos/formatter.png", 
+            "app_logo": `${process.env.MY_DOMAIN}/logo`, 
             "app_name": "Linode Spend Tracker", 
             "app_url": process.env.MY_DOMAIN,
             "background_color": "#fff"
