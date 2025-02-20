@@ -19,14 +19,11 @@ jobs:
                 
             - name: Deploy to server
               run: |
-                ssh -o StrictHostKeyChecking=no ubuntu@20.115.88.88 << 'EOF'
-                echo "Connected to server"
-                cd /home/ubuntu/myproject/stage_3/linode-spend-tracker
-                eval "$(ssh-agent -s)"
-                ssh-add ~/.ssh/github_ssh
-                ssh-keyscan github.com >> /home/ubuntu/.ssh/known_hosts
-                git pull origin main
-                npm install
-                sudo systemctl restart nginx
-                sudo systemctl restart stage3_node_service
-                EOF
+                curl -X POST "https://api.render.com/v1/services/${{secrets.RENDER_SERVICE_ID}}/deploys" \
+                -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+                -H "Accept: application/json" \
+                -d '
+                {
+                  "clearCache": "clear"
+                }
+                '
