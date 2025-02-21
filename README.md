@@ -174,10 +174,9 @@ Telex sends a request in the following format:
 
 ## Example Usage
 ### Using `cURL`
-To test the integration using `cURL`, use the following command to trigger the `/account-info/get-balance-info` endpoint
+To test the integration using `cURL`, use the following command to trigger the `/tick` endpoint
 ```
-curl -X POST "https://linode-spend-tracker.onrender.com/account-info/get-balance-info" \
-    -H "Authorization: Bearer YOUR_LINODE_TOKEN"
+curl -X POST "http://localhost:8000/tick" \
     -d '  {
             "channel_id":" 01950f57-1237-7b8b-a5cf-056bc18ece20",
             "return_url": "https://ping.telex.im/v1/return/01950f57-1237-7b8b-a5cf-056bc18ece20",
@@ -199,3 +198,84 @@ curl -X POST "https://linode-spend-tracker.onrender.com/account-info/get-balance
     '
 ```
 This will return to you a JSON response, containing a message about your linode account.
+
+### Using API Testers such as POSTman or ThunderClient
+To test the integration with postman, perform a `POST` request to the following endpoint `http://localhost:8000/tick` with the following payload
+```json 
+{
+    "channel_id":" 01950f57-1237-7b8b-a5cf-056bc18ece20",
+    "return_url": "https://ping.telex.im/v1/return/01950f57-1237-7b8b-a5cf-056bc18ece20",
+    "settings": [
+        {
+            "label": "Token",
+            "default":"d5ff7140690ccee75d504c4cd2af6389d2bdfb0c75245c9c6df19de3fbff557f",
+            "type": "text",
+            "required": true
+        },
+        {
+            "label": "Spending Threshold", 
+            "default": 0, 
+            "type": "number", 
+            "required": false
+        }
+        {
+            "label": "interval",
+            "type": "text",
+            "required": true,
+            "default": "* * * * *"
+        }
+    ]
+}
+```
+#### Screenshots
+![ThunderClient ScreenShots](./public/images/thunderclient.png)
+
+## 🚀 Deployment  
+
+This application has already been deployed, allowing users to integrate it seamlessly with Telex without needing to set it up locally. Below are details on the deployment environment and how it operates in production.
+
+### Deployment Environment
+- Hosted on: Render  
+- Backend URL: `https://your-deployed-api.com`  
+- Telex Integration Endpoint: `https://your-deployed-api.com/account-info/get-balance-info`  
+
+### Setting Up Deployment on Render
+If you need to deploy this application on **Render**, follow these steps:  
+
+1. Go to **Render Dashboard** and create a **new Web Service**.  
+2. Connect the service to your GitHub repository.  
+3. In the **Environment Variables** section, add the required variables, including:  
+   - `LINODE_TOKEN` → Your Linode API key  
+   - `RENDER_API_KEY` → Your Render API key  
+   - Any other required environment variables  
+4. Set the **Start Command** to:  
+   ```sh
+   npm start
+   ```  
+5. Deploy the service, and Render will handle the rest.  
+
+### Continuous Deployment with GitHub Actions 
+This project is configured for automatic deployments using **GitHub Actions**. Ensure you add your **Render API Key** to GitHub Secrets to allow the deployment workflow to push updates.  
+
+#### **Steps to Set Up GitHub Secrets:**  
+1. Go to your repository on GitHub.  
+2. Navigate to **Settings** > **Secrets and Variables** > **Actions**.  
+3. Click **New Repository Secret** and add:  
+   - `RENDER_API_KEY` → Your API key from Render  
+4. Ensure the deployment workflow (`deploy.yml`) is correctly set up to use this secret.  
+
+### **Updating the Deployment**  
+Once GitHub Actions is set up, deployments happen automatically when you push changes to the **main** branch. If you need to manually deploy:  
+
+1. **Push your changes** to the main repository:  
+   ```sh
+   git add .
+   git commit -m "Updated feature X"
+   git push origin main
+   ```  
+2. Go to Render Dashboard and manually trigger a redeploy if needed.
+
+### Screenshots
+![Integration Working In Channel Screenshot](./public/images/channels_screen_shote.png)
+<br> <br>
+![Integration ScreenShot](./public/images/linode_screen_shote.png)
