@@ -12,7 +12,7 @@ application.use(cors({
 
 // setup routes
 application.use('/integration-specs', require('./routes/integrationSpecs'));
-application.use('/tick', require('./routes/account'));
+application.use('/tick', require('./routes/tick'));
 application.use('/logo', require('./routes/logo'));
 
 module.exports = application;
