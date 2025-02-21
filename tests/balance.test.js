@@ -1,6 +1,7 @@
+require('dotenv').config();
 const application = require('../app');
 const request = require('supertest');
-require('dotenv').config();
+
 
 describe("Test the balance endpoint", () => {
     test("Endpoint should return a status 200 when parameters are there", async () => {
@@ -46,15 +47,15 @@ describe("Test the balance endpoint", () => {
         expect(res.statusCode).toBe(400);
     });
 
-    test("Should return a status 502 if the wrong API key is used", async () => {
+    test("Should return a status 401 if the wrong API key is used", async () => {
 
-        const res = await request(application).post('/tick').send({
-            "channel_id": " 01950f57-1237-7b8b-a5cf-056bc18ece20",
+        const res = await request(application).post('/tick').send( {
+            "channel_id":"01950f57-1237-7b8b-a5cf-056bc18ece20",
             "return_url": "https://ping.telex.im/v1/return/01950f57-1237-7b8b-a5cf-056bc18ece20",
-            "settings": [
+           "settings": [
                 {
                     "label": "Token",
-                    "default": "daniel",
+                    "default":"daniel",
                     "type": "text",
                     "required": true
                 },
@@ -66,6 +67,6 @@ describe("Test the balance endpoint", () => {
                 }
             ]
         });
-        expect(res.statusCode).toBe(401);
+        expect(res.statusCode).toBe(401)
     });
 })

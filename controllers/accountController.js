@@ -20,7 +20,7 @@ const getBalanceInfo = async (req, res) => {
 
     try {
         const accountInfo = await getAccountInfo();
-        // console.log(accountInfo);
+        console.log(`account info: ${accountInfo}`);
         // create the message that you want to return 
         const message = helperFunctions.generateMessage(accountInfo, threshold);
 

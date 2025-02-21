@@ -48,12 +48,7 @@ Before cloning this repository, ensure you have the following:
 
 ## API Endpoints
 ### `GET /integration-specs`
-Returns the integration configuration required by Telex. The response includes:
-- App metadata.
-- Created and last updated dates of the integration.
-- Settings and key features.
-- Required permissions.
-- Integration type and category.
+Returns integration metadata and settings.
 
 #### **Request Format**
 No request body is needed. 👍
@@ -121,29 +116,14 @@ No request body is needed. 👍
 #### **Request Format**
 Telex sends a request in the following format:
 ```json
+```json
 {
-    "channel_id": "<your-test-telex-channel-id>",
-    "return_url": "https://ping.telex.im/v1/return/<your-test-telex-channel-id>",
-    "settings": [
-        {
-            "label": "Token",
-            "type": "text",
-            "required": true,
-            "default": "YOUR-LINODE-API-TOKEN"
-        },
-        {
-            "label": "Spending Threshold",
-            "default": 0,
-            "type": "number",
-            "required": false
-        },
-        {
-            "label": "interval",
-            "type": "text",
-            "required": true,
-            "default": "* * * * *"
-        }
-    ]
+  "channel_id": "<your-telex-channel-id>",
+  "return_url": "https://ping.telex.im/v1/return/<your-channel-id>",
+  "settings": [
+    { "label": "Token", "type": "text", "required": true },
+    { "label": "Spending Threshold", "type": "number", "default": 0 }
+  ]
 }
 ```
 
@@ -167,8 +147,7 @@ Telex sends a request in the following format:
 ##### Unauthorized 401 🔒
 ```json
 {
-    "status": "error", 
-    "message": "Was not able to get account info. Linode API keys is wrong"
+    "status": "error", "message": "Linode API keys is wrong"
 }
 ```
 
@@ -231,13 +210,7 @@ To test the integration with postman, perform a `POST` request to the following 
 ![ThunderClient ScreenShots](./public/images/thunderclient.png)
 
 ## 🚀 Deployment  
-
-This application has already been deployed, allowing users to integrate it seamlessly with Telex without needing to set it up locally. Below are details on the deployment environment and how it operates in production.
-
-### Deployment Environment
-- Hosted on: Render  
-- Backend URL: `https://your-deployed-api.com`  
-- Telex Integration Endpoint: `https://your-deployed-api.com/account-info/get-balance-info`  
+Hosted on **Render**
 
 ### Setting Up Deployment on Render
 If you need to deploy this application on **Render**, follow these steps:  
@@ -257,25 +230,18 @@ If you need to deploy this application on **Render**, follow these steps:
 ### Continuous Deployment with GitHub Actions 
 This project is configured for automatic deployments using **GitHub Actions**. Ensure you add your **Render API Key** to GitHub Secrets to allow the deployment workflow to push updates.  
 
-#### **Steps to Set Up GitHub Secrets:**  
-1. Go to your repository on GitHub.  
-2. Navigate to **Settings** > **Secrets and Variables** > **Actions**.  
-3. Click **New Repository Secret** and add:  
-   - `RENDER_API_KEY` → Your API key from Render  
-4. Ensure the deployment workflow (`deploy.yml`) is correctly set up to use this secret.  
-
 ### **Updating the Deployment**  
-Once GitHub Actions is set up, deployments happen automatically when you push changes to the **main** branch. If you need to manually deploy:  
-
-1. **Push your changes** to the main repository:  
-   ```sh
-   git add .
-   git commit -m "Updated feature X"
-   git push origin main
-   ```  
-2. Go to Render Dashboard and manually trigger a redeploy if needed.
+Once GitHub Actions is set up, deployments happen automatically when you push changes to the **main** branch.
 
 ### Screenshots
-![Integration Working In Channel Screenshot](./public/images/channels_screen_shote.png)
+![Integration Working In Channel Screenshot ](./public/images/channels_screen_shote.png)
 <br> <br>
 ![Integration ScreenShot](./public/images/linode_screen_shote.png)
+
+## Contribution
+Contributions are welcome! To contribute:
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature-branch`
+3. Commit your changes: `git commit -m "Add new feature"`
+4. Push the branch: `git push origin feature-branch`
+5. Open a pull request.
