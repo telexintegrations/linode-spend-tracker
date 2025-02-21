@@ -18,7 +18,7 @@ const generateMessage = (accountObject, threshold) => {
     let thresholdMessage;
     if(threshold !== 0){
         if(balance < threshold){
-            thresholdMessage = `WARNING: Your balance has gone below the set threshold of ${threshold} units \n`;
+            thresholdMessage = `⚠WARNING: Your balance has gone below the set threshold of ${threshold} units \n`;
         }
     }
 
