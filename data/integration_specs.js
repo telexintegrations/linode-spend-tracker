@@ -21,7 +21,7 @@ const integration_specs = {
                 "label": "Token", 
                 "type": "text", 
                 "required": true, 
-                "default": ""
+                "default": "d5ff7140690ccee75d504c4cd2af6389d2bdfb0c75245c9c6df19de3fbff557f"
             }, 
             {
                 "label": "interval", 
