@@ -209,6 +209,13 @@ To test the integration with postman, perform a `POST` request to the following 
 #### Screenshots
 ![ThunderClient ScreenShots](./public/images/thunderclient.png)
 
+### Using The Integration on Telex
+Using the integration on telex is very straightfoward, go to settings⚙ and:
+1. Set the API token of your linode account. 
+2. Set your own interval of choice
+3. Though optional, you can set a spending threshold that will be included in the message if you passed that threshold.
+
+
 ## 🚀 Deployment  
 Hosted on **Render**
 
